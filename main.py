@@ -8,7 +8,7 @@ import os
 """
 
 # 注册插件
-@register(name="AutoLike", description="自动点赞用户名片[开发]", version="0.1", author="笨笨")
+@register(name="SendLike", description="自动点赞用户名片w", version="0.1", author="Licy12138")
 class AutoLikePlugin(BasePlugin):
 
     def __init__(self, host: APIHost):
