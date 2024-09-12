@@ -5,8 +5,11 @@
 ## 安装方法
 
 仅支持[LiteLoaderQQNT](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT)中的[LLonebot](https://github.com/LLOneBot/LLOneBot)插件
+
 基于Onebot 11协议开发
+
 在LLoneBot设置中，启用HTTP服务，端口监听为3000
+
 👆仅在这个消息平台上测试过
 
 ## 依赖
