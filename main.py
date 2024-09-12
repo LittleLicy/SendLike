@@ -13,7 +13,7 @@ class AutoLikePlugin(BasePlugin):
 
     def __init__(self, host: APIHost):
         self.host = host
-        self.api_base_url = os.getenv("ONEBOT_API_URL", "http://localhost:3000")
+        self.api_base_url = os.getenv("ONEBOT_API_URL", "http://localhost:3000") #llonebot默认http端口3000
 
     async def initialize(self):
         pass
