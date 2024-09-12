@@ -13,7 +13,7 @@ class AutoLikePlugin(BasePlugin):
 
     def __init__(self, host: APIHost):
         self.host = host
-        self.api_base_url = os.getenv("ONEBOT_API_URL", "http://localhost:3000") #llonebot默认http端口3000
+        self.api_base_url = os.getenv("ONEBOT_API_URL", "http://localhost:3000") 
 
     async def initialize(self):
         pass
@@ -26,7 +26,7 @@ class AutoLikePlugin(BasePlugin):
             await self.send_like(sender_id, times=10)  # 设定点赞次数为10
             ctx.add_return("reply", ["已经为你点赞了10次，记得回赞捏~"])
             ctx.prevent_default()
-        if msg.startswith("超我"): #这里可以写自定义回复消息
+        if msg.startswith("超我"): 
             sender_id = ctx.event.sender_id
             await self.send_like(sender_id, times=10)  # 设定点赞次数为10
             ctx.add_return("reply", ["已经为你超了10次，记得回赞捏~"])
