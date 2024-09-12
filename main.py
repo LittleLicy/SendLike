@@ -61,7 +61,7 @@ class AutoLikePlugin(BasePlugin):
                         error_data = await response.json()
                         self.ap.logger.error(f"点赞失败，状态码: {response.status}, 错误信息: {error_data}")
             except aiohttp.ClientError as e:
-                self.ap.logger.error(f"网络请求失败: {e}")
+                self.ap.logger.error(f"网络请求失败: {e}") #如果你的监听端口不正确的话
 
     def __del__(self):
         pass
