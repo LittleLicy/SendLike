@@ -1,49 +1,67 @@
-from pkg.plugin.context import register, handler, llm_func, BasePlugin, APIHost, EventContext
-from pkg.plugin.events import *  # 导入事件类
+from pkg.plugin.context import register, handler, BasePlugin, APIHost, EventContext
+from pkg.plugin.events import PersonNormalMessageReceived, GroupNormalMessageReceived
+import aiohttp
+import os
 
+"""
+在收到私聊或群聊消息"赞我"时，自动点赞用户名片
+"""
 
 # 注册插件
-@register(name="Hello", description="hello world", version="0.1", author="RockChinQ")
-class MyPlugin(BasePlugin):
+@register(name="AutoLike", description="自动点赞用户名片[开发]", version="0.1", author="笨笨")
+class AutoLikePlugin(BasePlugin):
 
-    # 插件加载时触发
     def __init__(self, host: APIHost):
-        pass
+        self.host = host
+        self.api_base_url = os.getenv("ONEBOT_API_URL", "http://localhost:3000")
 
-    # 异步初始化
     async def initialize(self):
         pass
 
-    # 当收到个人消息时触发
     @handler(PersonNormalMessageReceived)
     async def person_normal_message_received(self, ctx: EventContext):
-        msg = ctx.event.text_message  # 这里的 event 即为 PersonNormalMessageReceived 的对象
-        if msg == "hello":  # 如果消息为hello
-
-            # 输出调试信息
-            self.ap.logger.debug("hello, {}".format(ctx.event.sender_id))
-
-            # 回复消息 "hello, <发送者id>!"
-            ctx.add_return("reply", ["hello, {}!".format(ctx.event.sender_id)])
-
-            # 阻止该事件默认行为（向接口获取回复）
+        msg = ctx.event.text_message
+        if msg.startswith("赞我"):
+            sender_id = ctx.event.sender_id
+            await self.send_like(sender_id, times=10)  # 设定点赞次数为10
+            ctx.add_return("reply", ["已经为你点赞了10次，记得回赞捏~"])
+            ctx.prevent_default()
+        if msg.startswith("超我"):
+            sender_id = ctx.event.sender_id
+            await self.send_like(sender_id, times=10)  # 设定点赞次数为10
+            ctx.add_return("reply", ["已经为你超了10次，记得回赞捏~"])
             ctx.prevent_default()
 
-    # 当收到群消息时触发
     @handler(GroupNormalMessageReceived)
     async def group_normal_message_received(self, ctx: EventContext):
-        msg = ctx.event.text_message  # 这里的 event 即为 GroupNormalMessageReceived 的对象
-        if msg == "hello":  # 如果消息为hello
-
-            # 输出调试信息
-            self.ap.logger.debug("hello, {}".format(ctx.event.sender_id))
-
-            # 回复消息 "hello, everyone!"
-            ctx.add_return("reply", ["hello, everyone!"])
-
-            # 阻止该事件默认行为（向接口获取回复）
+        msg = ctx.event.text_message
+        if msg.startswith("赞我"):
+            sender_id = ctx.event.sender_id
+            await self.send_like(sender_id, times=10)  # 设定点赞次数为10
+            ctx.add_return("reply", ["已经为你点赞了10次，记得回赞捏~"])
+            ctx.prevent_default()
+        if msg.startswith("超我"):
+            sender_id = ctx.event.sender_id
+            await self.send_like(sender_id, times=10)  # 设定点赞次数为10
+            ctx.add_return("reply", ["已经为你超了10次，记得回赞捏~"])
             ctx.prevent_default()
 
-    # 插件卸载时触发
+    async def send_like(self, user_id, times=1):
+        payload = {
+            "user_id": user_id,
+            "times": times  # 正确传递 times 参数
+        }
+
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.post(f"{self.api_base_url}/send_like", json=payload) as response:
+                    if response.status == 200:
+                        self.ap.logger.info(f"成功为用户 {user_id} 点赞 {times} 次！")
+                    else:
+                        error_data = await response.json()
+                        self.ap.logger.error(f"点赞失败，状态码: {response.status}, 错误信息: {error_data}")
+            except aiohttp.ClientError as e:
+                self.ap.logger.error(f"网络请求失败: {e}")
+
     def __del__(self):
         pass
