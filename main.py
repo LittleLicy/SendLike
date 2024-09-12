@@ -26,7 +26,7 @@ class AutoLikePlugin(BasePlugin):
             await self.send_like(sender_id, times=10)  # 设定点赞次数为10
             ctx.add_return("reply", ["已经为你点赞了10次，记得回赞捏~"])
             ctx.prevent_default()
-        if msg.startswith("超我"):
+        if msg.startswith("超我"): #这里可以写自定义回复消息
             sender_id = ctx.event.sender_id
             await self.send_like(sender_id, times=10)  # 设定点赞次数为10
             ctx.add_return("reply", ["已经为你超了10次，记得回赞捏~"])
