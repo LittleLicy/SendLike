@@ -19,3 +19,6 @@
 ## 使用
 
 艾特机器人发送`赞我`即可给自己的QQ群名片点赞。默认点赞10次，具体看QQ账号（机器人账号）能点赞的次数。
+
+![image](https://github.com/user-attachments/assets/e27da724-92b6-48a2-85f7-77a728334a8e)
+
