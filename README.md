@@ -14,9 +14,9 @@
 
 ## 安装方法
 
-# 1.对机器人输入命令`!plugin get https://github.com/Licy12138/SendLike.git`安装插件
+ 1.对机器人输入命令`!plugin get https://github.com/Licy12138/SendLike.git`安装插件
 
-# 2.下载压缩包，解压到`plugins`文件夹即可使用
+ 2.下载压缩包，解压到`plugins`文件夹即可使用
 
 ## 依赖
 
