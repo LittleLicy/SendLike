@@ -2,7 +2,7 @@
 
 一个给QQ名片点赞的插件！（第一次写插件）
 
-(更多功能可以参考[Onebot11](https://github.com/botuniverse/onebot-11/blob/master/api/public.md)的API接口)
+(更多功能可以参考[Onebot11](https://github.com/botuniverse/onebot-11)的API接口)
 
 ## 注意
 
