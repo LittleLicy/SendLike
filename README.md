@@ -2,6 +2,8 @@
 
 一个给QQ名片点赞的插件！（第一次写插件）
 
+(更多功能可以参考[Onebot11](https://github.com/botuniverse/onebot-11/blob/master/api/public.md)的API接口)
+
 ## 注意
 
 仅支持[LiteLoaderQQNT](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT)中的[LLonebot](https://github.com/LLOneBot/LLOneBot)插件
