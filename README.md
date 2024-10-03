@@ -20,9 +20,13 @@
 
  2.下载压缩包，解压到`plugins`文件夹即可使用
 
-## 依赖
+## 需要依赖
 
-输入`pip install requests`来安装依赖
+输入`pip install requests`
+
+和`pip install aiohttp`
+
+来安装依赖
 
 ## 使用
 
